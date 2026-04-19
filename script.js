@@ -169,7 +169,6 @@ function renderBoard() {
           <div class="card-bottom-gem">💎</div>
         </div>
         <div class="memory-card-face card-front">
-          <div class="card-crown">💎</div>
           <div class="card-corner corner-top-right">✦</div>
           <div class="card-corner corner-top-left">✦</div>
           <div class="card-corner corner-bottom-right">✦</div>
@@ -179,7 +178,6 @@ function renderBoard() {
             <div class="card-spark">✨</div>
             <div class="card-word ${wordLengthClass} ${wordLayoutClass}">${wordMarkup}</div>
           </div>
-          <div class="card-bottom-gem">💎</div>
         </div>
       </div>
     `;
