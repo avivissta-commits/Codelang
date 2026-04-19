@@ -238,13 +238,31 @@ function fitCardWords() {
 function fitActiveScreen() {
   const activeScreen = document.querySelector(".screen.active");
   const inner = activeScreen?.querySelector(".screen-inner");
+  const isMobileViewport = isMobileDevice();
 
   if (!activeScreen || !inner) {
     return;
   }
 
-  inner.style.transform = "scale(1)";
+  document.body.classList.toggle("mobile-viewport", isMobileViewport);
+
+  inner.style.transform = "";
   inner.classList.remove("compact-screen");
+  inner.classList.remove("ultra-compact-screen");
+
+  if (isMobileViewport) {
+    const viewportHeight = window.visualViewport?.height || window.innerHeight;
+
+    if (viewportHeight <= 760) {
+      inner.classList.add("compact-screen");
+    }
+
+    if (viewportHeight <= 680) {
+      inner.classList.add("ultra-compact-screen");
+    }
+
+    return;
+  }
 
   const availableHeight = activeScreen.clientHeight;
   const availableWidth = activeScreen.clientWidth;
@@ -256,14 +274,6 @@ function fitActiveScreen() {
 
   if (scale < 0.98) {
     inner.classList.add("compact-screen");
-    inner.style.transform = "scale(1)";
-
-    requestAnimationFrame(() => {
-      const compactHeight = Math.max(inner.scrollHeight, inner.offsetHeight);
-      const compactWidth = Math.max(inner.scrollWidth, inner.offsetWidth);
-      const compactScale = Math.min(1, availableHeight / compactHeight, availableWidth / compactWidth);
-      inner.style.transform = `scale(${compactScale})`;
-    });
   }
 }
 
@@ -276,6 +286,7 @@ function updateViewportMetrics() {
 
   document.documentElement.style.setProperty("--app-height", `${viewportHeight}px`);
   document.documentElement.style.setProperty("--browser-ui-bottom", `${hiddenBottomInset}px`);
+  document.body.classList.toggle("mobile-device", isMobileDevice());
 }
 
 function closeExperience() {
@@ -285,6 +296,14 @@ function closeExperience() {
   }
 
   window.close();
+}
+
+function isMobileDevice() {
+  const userAgent = navigator.userAgent || "";
+  const mobileAgent =
+    /iPhone|iPad|iPod|Android|Mobile|Opera Mini|IEMobile/i.test(userAgent);
+  const coarsePointer = window.matchMedia?.("(pointer: coarse)")?.matches;
+  return Boolean(mobileAgent || coarsePointer);
 }
 
 function handleCardClick(cardId) {
