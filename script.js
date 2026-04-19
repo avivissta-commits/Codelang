@@ -252,12 +252,16 @@ function fitActiveScreen() {
 
   if (isMobileViewport) {
     const viewportHeight = window.visualViewport?.height || window.innerHeight;
+    const isGameScreen = activeScreen.id === "gameScreen";
 
-    if (viewportHeight <= 760) {
+    if (isGameScreen || viewportHeight <= 760) {
       inner.classList.add("compact-screen");
     }
 
-    if (viewportHeight <= 680) {
+    if (
+      (isGameScreen && (state.difficulty === "hard" || state.difficulty === "medium")) ||
+      viewportHeight <= 680
+    ) {
       inner.classList.add("ultra-compact-screen");
     }
 
