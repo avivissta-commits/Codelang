@@ -206,6 +206,10 @@ button {
 }
 
 body.mobile-viewport .screen-inner,
+body.mobile-device .screen-inner {
+  transform: none !important;
+}
+
 body.mobile-device {
   --screen-bottom-gap: calc(4px + env(safe-area-inset-bottom) + var(--browser-ui-bottom));
 }
@@ -220,7 +224,7 @@ body.mobile-device .app-shell {
 }
 
 body.mobile-device .phone-frame {
-  --frame-topbar-height: 0px;
+  --frame-topbar-height: 56px;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -231,13 +235,12 @@ body.mobile-device .phone-frame {
   overflow: hidden;
 }
 
-body.mobile-device .phone-frame::before,
-body.mobile-device .app-topbar {
+body.mobile-device .phone-frame::before {
   display: none;
 }
 
 body.mobile-device .screen {
-  inset: 0 0 var(--screen-bottom-gap) 0;
+  inset: var(--frame-topbar-height) 0 var(--screen-bottom-gap) 0;
   padding: 0;
 }
 
@@ -278,6 +281,27 @@ body.mobile-device .board-panel {
 body.mobile-device .game-board {
   height: 100%;
   align-content: stretch;
+}
+
+body.mobile-device .app-topbar {
+  display: flex !important;
+  min-height: var(--frame-topbar-height);
+  padding:
+    max(8px, env(safe-area-inset-top))
+    12px
+    8px
+    12px;
+  z-index: 8;
+}
+
+body.mobile-device .app-topbar-title {
+  font-size: 0.9rem;
+}
+
+body.mobile-device .topbar-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
 }
 
 .screen-inner.compact-screen .hero-image {
@@ -1083,7 +1107,7 @@ h2 {
   }
 
   .app-topbar {
-    display: none;
+    display: flex;
   }
 
   .screen {
