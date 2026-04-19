@@ -287,11 +287,11 @@ body.mobile-device .board-panel {
 body.mobile-device .game-board {
   height: 100%;
   align-content: stretch;
-  gap: 3px;
+  gap: 2px;
 }
 
 body.mobile-device .memory-card {
-  width: min(100%, 86px);
+  width: min(100%, 90px);
 }
 
 body.mobile-device .hud {
@@ -961,10 +961,10 @@ h2 {
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
   min-height: 100%;
-  padding: 30px 8px;
+  padding: 26px 6px;
 }
 
 .card-spark {
@@ -972,11 +972,11 @@ h2 {
 }
 
 .card-word {
-  width: auto;
+  width: 100%;
   max-width: 100%;
-  font-size: clamp(0.9rem, 1.7vw, 1.12rem);
-  font-weight: 700;
-  line-height: 1.15;
+  font-size: clamp(0.98rem, 1.95vw, 1.22rem);
+  font-weight: 800;
+  line-height: 1.08;
   text-align: center;
   white-space: nowrap;
   word-break: keep-all;
@@ -985,10 +985,12 @@ h2 {
   letter-spacing: -0.03em;
   direction: rtl;
   unicode-bidi: plaintext;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   transform: translateX(0);
+  padding-inline: 2px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
 .card-word--single {
@@ -1008,19 +1010,19 @@ h2 {
 }
 
 .card-word--medium {
-  font-size: clamp(0.82rem, 1.6vw, 0.98rem);
+  font-size: clamp(0.9rem, 1.78vw, 1.04rem);
 }
 
 .card-word--long {
-  font-size: clamp(0.7rem, 1.35vw, 0.84rem);
+  font-size: clamp(0.8rem, 1.52vw, 0.92rem);
 }
 
 .card-word--stacked.card-word--medium {
-  font-size: clamp(0.86rem, 1.7vw, 1.02rem);
+  font-size: clamp(0.94rem, 1.86vw, 1.08rem);
 }
 
 .card-word--stacked.card-word--long {
-  font-size: clamp(0.82rem, 1.55vw, 0.95rem);
+  font-size: clamp(0.88rem, 1.68vw, 1rem);
 }
 
 .victory-screen {
@@ -1421,12 +1423,33 @@ h2 {
   }
 
   .card-content {
-    gap: 6px;
-    padding: 22px 6px;
+    gap: 4px;
+    padding: 19px 4px;
   }
 
   .card-spark {
     font-size: 1rem;
+  }
+
+  .card-word {
+    font-size: clamp(1rem, 4.1vw, 1.18rem);
+    line-height: 1.05;
+  }
+
+  .card-word--medium {
+    font-size: clamp(0.92rem, 3.8vw, 1.04rem);
+  }
+
+  .card-word--long {
+    font-size: clamp(0.82rem, 3.45vw, 0.94rem);
+  }
+
+  .card-word--stacked.card-word--medium {
+    font-size: clamp(0.96rem, 3.95vw, 1.08rem);
+  }
+
+  .card-word--stacked.card-word--long {
+    font-size: clamp(0.88rem, 3.55vw, 0.98rem);
   }
 }
 
@@ -1477,7 +1500,7 @@ body.mobile-device .screen-inner.compact-screen .status-text p {
 }
 
 body.mobile-device .screen-inner.compact-screen .memory-card {
-  width: min(100%, 74px);
+  width: min(100%, 78px);
 }
 
 body.mobile-device .screen-inner.compact-screen .game-inner {
@@ -1491,7 +1514,7 @@ body.mobile-device .screen-inner.compact-screen .board-panel {
 }
 
 body.mobile-device .screen-inner.compact-screen .game-board {
-  gap: 3px;
+  gap: 2px;
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .game-inner {
@@ -1499,11 +1522,11 @@ body.mobile-device .screen-inner.ultra-compact-screen .game-inner {
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .memory-card {
-  width: min(100%, 60px);
+  width: min(100%, 64px);
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .game-board {
-  gap: 2px;
+  gap: 1px;
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .hud {
