@@ -1357,8 +1357,8 @@ h2 {
 }
 
 body.mobile-device .screen-inner.compact-screen .hero-image {
-  height: 108px;
-  min-height: 108px;
+  height: 133px;
+  min-height: 133px;
 }
 
 body.mobile-device .screen-inner.compact-screen h1 {
@@ -1492,8 +1492,8 @@ body.mobile-device .screen-inner.ultra-compact-screen .hud {
   }
 
   .hero-image {
-    height: 120px;
-    min-height: 120px;
+    height: 145px;
+    min-height: 145px;
     border-radius: 18px;
   }
 
