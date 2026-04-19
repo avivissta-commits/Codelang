@@ -2,9 +2,9 @@
 <html lang="he" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>שפת קוד | גרסת משחק הזיכרון</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20260419-4" />
   </head>
   <body>
     <div class="app-shell">
@@ -12,6 +12,21 @@
       <div class="ambient ambient-right"></div>
 
       <main class="phone-frame">
+        <header class="app-topbar">
+          <div class="app-topbar-title">
+            <span class="app-topbar-dot"></span>
+            <strong>שפת קוד</strong>
+          </div>
+          <div class="app-topbar-actions">
+            <button id="minimizeViewBtn" class="topbar-btn" type="button" aria-label="מזעור">
+              <span>➖</span>
+            </button>
+            <button id="closeViewBtn" class="topbar-btn close-btn" type="button" aria-label="סגירה">
+              <span>✕</span>
+            </button>
+          </div>
+        </header>
+
         <section class="screen intro-screen active" id="introScreen">
           <div class="screen-inner intro-inner">
             <div class="hero-card floating">
@@ -144,6 +159,6 @@
       </main>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="./script.js?v=20260419-4"></script>
   </body>
 </html>

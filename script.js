@@ -19,6 +19,7 @@ const ui = {
   introScreen: document.getElementById("introScreen"),
   gameScreen: document.getElementById("gameScreen"),
   victoryScreen: document.getElementById("victoryScreen"),
+  heroImage: document.querySelector(".hero-image"),
   gameBoard: document.getElementById("gameBoard"),
   scoreValue: document.getElementById("scoreValue"),
   timeValue: document.getElementById("timeValue"),
@@ -31,6 +32,8 @@ const ui = {
   backToMenuBtn: document.getElementById("backToMenuBtn"),
   playAgainBtn: document.getElementById("playAgainBtn"),
   chooseDifficultyBtn: document.getElementById("chooseDifficultyBtn"),
+  minimizeViewBtn: document.getElementById("minimizeViewBtn"),
+  closeViewBtn: document.getElementById("closeViewBtn"),
   difficultyButtons: document.querySelectorAll(".difficulty-btn"),
   confettiCanvas: document.getElementById("confettiCanvas"),
 };
@@ -58,16 +61,34 @@ ui.startGameBtn.addEventListener("click", () => startGame(state.difficulty));
 ui.backToMenuBtn.addEventListener("click", showIntro);
 ui.playAgainBtn.addEventListener("click", () => startGame(state.difficulty));
 ui.chooseDifficultyBtn.addEventListener("click", showIntro);
+ui.minimizeViewBtn.addEventListener("click", showIntro);
+ui.closeViewBtn.addEventListener("click", closeExperience);
 window.addEventListener("resize", () => {
+  updateViewportMetrics();
   if (state.isPlaying) {
     fitCardWords();
   }
   fitActiveScreen();
 });
+window.addEventListener("load", () => {
+  updateViewportMetrics();
+  fitCardWords();
+  fitActiveScreen();
+});
+window.visualViewport?.addEventListener("resize", () => {
+  updateViewportMetrics();
+  fitActiveScreen();
+});
+window.visualViewport?.addEventListener("scroll", updateViewportMetrics);
 
+updateViewportMetrics();
 selectDifficulty("easy");
 showScreen("intro");
 window.requestAnimationFrame(fitActiveScreen);
+
+if (ui.heroImage) {
+  ui.heroImage.addEventListener("load", fitActiveScreen);
+}
 
 function selectDifficulty(difficulty) {
   state.difficulty = difficulty;
@@ -223,14 +244,47 @@ function fitActiveScreen() {
   }
 
   inner.style.transform = "scale(1)";
+  inner.classList.remove("compact-screen");
 
   const availableHeight = activeScreen.clientHeight;
   const availableWidth = activeScreen.clientWidth;
-  const contentHeight = inner.scrollHeight;
-  const contentWidth = inner.scrollWidth;
+  const contentHeight = Math.max(inner.scrollHeight, inner.offsetHeight);
+  const contentWidth = Math.max(inner.scrollWidth, inner.offsetWidth);
   const scale = Math.min(1, availableHeight / contentHeight, availableWidth / contentWidth);
 
   inner.style.transform = `scale(${scale})`;
+
+  if (scale < 0.98) {
+    inner.classList.add("compact-screen");
+    inner.style.transform = "scale(1)";
+
+    requestAnimationFrame(() => {
+      const compactHeight = Math.max(inner.scrollHeight, inner.offsetHeight);
+      const compactWidth = Math.max(inner.scrollWidth, inner.offsetWidth);
+      const compactScale = Math.min(1, availableHeight / compactHeight, availableWidth / compactWidth);
+      inner.style.transform = `scale(${compactScale})`;
+    });
+  }
+}
+
+function updateViewportMetrics() {
+  const viewportHeight = window.visualViewport?.height || window.innerHeight;
+  const hiddenBottomInset = Math.max(
+    0,
+    window.innerHeight - viewportHeight - (window.visualViewport?.offsetTop || 0)
+  );
+
+  document.documentElement.style.setProperty("--app-height", `${viewportHeight}px`);
+  document.documentElement.style.setProperty("--browser-ui-bottom", `${hiddenBottomInset}px`);
+}
+
+function closeExperience() {
+  if (window.history.length > 1) {
+    window.history.back();
+    return;
+  }
+
+  window.close();
 }
 
 function handleCardClick(cardId) {
