@@ -291,7 +291,7 @@ body.mobile-device .game-board {
 }
 
 body.mobile-device .memory-card {
-  width: min(100%, 90px);
+  width: min(100%, 92px);
 }
 
 body.mobile-device .hud {
@@ -959,21 +959,27 @@ h2 {
   position: relative;
   z-index: 1;
   display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 8px;
+  place-items: center;
   width: 100%;
   min-height: 100%;
-  padding: 26px 6px;
+  padding: 18px 6px;
 }
 
 .card-spark {
+  position: absolute;
+  top: 14px;
+  left: 50%;
   font-size: 1.35rem;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0.92;
 }
 
 .card-word {
-  width: 100%;
+  box-sizing: border-box;
+  width: calc(100% - 6px);
   max-width: 100%;
+  min-height: calc(100% - 8px);
   font-size: clamp(0.98rem, 1.95vw, 1.22rem);
   font-weight: 800;
   line-height: 1.08;
@@ -984,12 +990,11 @@ h2 {
   margin: 0 auto;
   letter-spacing: -0.03em;
   direction: rtl;
-  unicode-bidi: plaintext;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  unicode-bidi: isolate;
+  display: grid;
+  place-items: center;
   transform: translateX(0);
-  padding-inline: 2px;
+  padding: 12px 4px 10px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.16);
 }
 
@@ -998,15 +1003,18 @@ h2 {
 }
 
 .card-word--stacked {
-  display: inline-grid;
-  justify-items: center;
+  display: grid;
+  place-items: center;
   white-space: normal;
   gap: 2px;
   line-height: 1.05;
+  width: 100%;
 }
 
 .card-word--stacked span {
   display: block;
+  width: 100%;
+  text-align: center;
 }
 
 .card-word--medium {
@@ -1423,17 +1431,20 @@ h2 {
   }
 
   .card-content {
-    gap: 4px;
-    padding: 19px 4px;
+    padding: 16px 4px;
   }
 
   .card-spark {
     font-size: 1rem;
+    top: 10px;
   }
 
   .card-word {
     font-size: clamp(1rem, 4.1vw, 1.18rem);
     line-height: 1.05;
+    width: calc(100% - 4px);
+    min-height: calc(100% - 4px);
+    padding: 10px 3px 8px;
   }
 
   .card-word--medium {
@@ -1500,7 +1511,7 @@ body.mobile-device .screen-inner.compact-screen .status-text p {
 }
 
 body.mobile-device .screen-inner.compact-screen .memory-card {
-  width: min(100%, 78px);
+  width: min(100%, 80px);
 }
 
 body.mobile-device .screen-inner.compact-screen .game-inner {
@@ -1522,7 +1533,7 @@ body.mobile-device .screen-inner.ultra-compact-screen .game-inner {
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .memory-card {
-  width: min(100%, 64px);
+  width: min(100%, 66px);
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .game-board {
@@ -1546,6 +1557,86 @@ body.mobile-device .screen-inner.ultra-compact-screen .ghost-btn {
   min-height: 30px;
   padding: 5px 8px;
   font-size: 0.72rem;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] {
+  gap: 1px;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .memory-card {
+  width: min(100%, 68px);
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-front-orbit {
+  inset: 26px 14px;
+  opacity: 0.56;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-crown,
+body.mobile-device .game-board[data-difficulty="hard"] .card-bottom-gem {
+  font-size: 0.88rem;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-corner {
+  font-size: 0.58rem;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .corner-top-right,
+body.mobile-device .game-board[data-difficulty="hard"] .corner-top-left {
+  top: 7px;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .corner-bottom-right,
+body.mobile-device .game-board[data-difficulty="hard"] .corner-bottom-left {
+  bottom: 7px;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .corner-top-right,
+body.mobile-device .game-board[data-difficulty="hard"] .corner-bottom-right {
+  right: 7px;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .corner-top-left,
+body.mobile-device .game-board[data-difficulty="hard"] .corner-bottom-left {
+  left: 7px;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-content {
+  padding: 12px 3px 8px;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-spark {
+  top: 7px;
+  font-size: 0.8rem;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-word {
+  width: calc(100% - 2px);
+  min-height: calc(100% - 2px);
+  font-size: clamp(0.92rem, 3.45vw, 1rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  padding: 8px 2px 6px;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-word--medium {
+  font-size: clamp(0.82rem, 3.15vw, 0.92rem);
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-word--long {
+  font-size: clamp(0.72rem, 2.8vw, 0.82rem);
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-word--stacked {
+  gap: 1px;
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-word--stacked.card-word--medium {
+  font-size: clamp(0.8rem, 3.05vw, 0.9rem);
+}
+
+body.mobile-device .game-board[data-difficulty="hard"] .card-word--stacked.card-word--long {
+  font-size: clamp(0.72rem, 2.8vw, 0.82rem);
 }
 
 @media (max-width: 520px) {

@@ -220,6 +220,7 @@ function renderBoard() {
 
 function fitCardWords() {
   const wordElements = ui.gameBoard.querySelectorAll(".card-word");
+  const isHardBoard = ui.gameBoard.dataset.difficulty === "hard";
 
   wordElements.forEach((element) => {
     const content = element.closest(".card-content");
@@ -229,14 +230,19 @@ function fitCardWords() {
     }
 
     element.style.fontSize = "";
-    element.style.justifyContent = "center";
+    element.style.width = "";
+    element.style.minHeight = "";
     element.style.textAlign = "center";
 
     const computedStyle = window.getComputedStyle(element);
     let fontSize = parseFloat(computedStyle.fontSize);
-    const minFontSize = element.classList.contains("card-word--stacked") ? 13 : 10;
-    const maxWidth = content.clientWidth - 4;
-    const maxHeight = content.clientHeight - 30;
+    const isStacked = element.classList.contains("card-word--stacked");
+    const minFontSize = isHardBoard ? (isStacked ? 11 : 9.5) : isStacked ? 13 : 10;
+    const maxWidth = content.clientWidth - (isHardBoard ? 6 : 10);
+    const maxHeight = content.clientHeight - (isHardBoard ? 12 : 18);
+
+    element.style.width = `${Math.max(maxWidth, 0)}px`;
+    element.style.minHeight = `${Math.max(maxHeight, 0)}px`;
 
     while ((element.scrollWidth > maxWidth || element.scrollHeight > maxHeight) && fontSize > minFontSize) {
       fontSize -= 0.5;
@@ -486,6 +492,7 @@ function setBoardColumns() {
   const pairs = DIFFICULTIES[state.difficulty].pairs;
   const columns = pairs >= 8 ? 4 : pairs >= 6 ? 3 : 2;
   ui.gameBoard.style.gridTemplateColumns = `repeat(${columns}, minmax(0, 1fr))`;
+  ui.gameBoard.dataset.difficulty = state.difficulty;
 }
 
 function startConfetti() {
