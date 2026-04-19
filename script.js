@@ -62,10 +62,12 @@ window.addEventListener("resize", () => {
   if (state.isPlaying) {
     fitCardWords();
   }
+  fitActiveScreen();
 });
 
 selectDifficulty("easy");
 showScreen("intro");
+window.requestAnimationFrame(fitActiveScreen);
 
 function selectDifficulty(difficulty) {
   state.difficulty = difficulty;
@@ -98,6 +100,10 @@ function startGame(difficulty) {
   setBoardColumns();
   showScreen("game");
   startTimer();
+  window.requestAnimationFrame(() => {
+    fitCardWords();
+    fitActiveScreen();
+  });
 }
 
 function createCards(pairs) {
@@ -210,6 +216,25 @@ function fitCardWords() {
   });
 }
 
+function fitActiveScreen() {
+  const activeScreen = document.querySelector(".screen.active");
+  const inner = activeScreen?.querySelector(".screen-inner");
+
+  if (!activeScreen || !inner) {
+    return;
+  }
+
+  inner.style.transform = "scale(1)";
+
+  const availableHeight = activeScreen.clientHeight;
+  const availableWidth = activeScreen.clientWidth;
+  const contentHeight = inner.scrollHeight;
+  const contentWidth = inner.scrollWidth;
+  const scale = Math.min(1, availableHeight / contentHeight, availableWidth / contentWidth);
+
+  inner.style.transform = `scale(${scale})`;
+}
+
 function handleCardClick(cardId) {
   if (state.lockBoard || !state.isPlaying) {
     return;
@@ -313,6 +338,7 @@ function finishGame() {
   ui.finalScore.textContent = String(state.score);
   showScreen("victory");
   startConfetti();
+  window.requestAnimationFrame(fitActiveScreen);
 }
 
 function setStatus(emoji, message) {
@@ -347,6 +373,7 @@ function showIntro() {
   stopConfetti();
   state.isPlaying = false;
   showScreen("intro");
+  window.requestAnimationFrame(fitActiveScreen);
 }
 
 function showScreen(screenName) {
@@ -361,6 +388,8 @@ function showScreen(screenName) {
     screen.classList.toggle("active", isActive);
     screen.setAttribute("aria-hidden", String(!isActive));
   });
+
+  fitActiveScreen();
 }
 
 function setBoardColumns() {

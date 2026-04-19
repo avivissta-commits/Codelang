@@ -125,16 +125,32 @@ button {
 .victory-screen {
   display: grid;
   height: 100%;
+  place-items: start stretch;
 }
 
-.intro-screen {
+.screen-inner {
+  width: 100%;
+  min-height: 100%;
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.intro-inner {
+  display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   gap: 12px;
 }
 
-.game-screen {
+.game-inner {
+  display: grid;
   grid-template-rows: auto auto minmax(0, 1fr);
   gap: 10px;
+}
+
+.victory-inner {
+  display: grid;
+  align-items: center;
+  min-height: 100%;
 }
 
 .hero-card,

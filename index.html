@@ -13,125 +13,131 @@
 
       <main class="phone-frame">
         <section class="screen intro-screen active" id="introScreen">
-          <div class="hero-card floating">
-            <div class="hero-badges">
-              <div class="hero-chip coin-chip">🕶️ סטייל מובייל</div>
-              <div class="hero-chip gem-chip">💎 שפת קוד</div>
+          <div class="screen-inner intro-inner">
+            <div class="hero-card floating">
+              <div class="hero-badges">
+                <div class="hero-chip coin-chip">🕶️ סטייל מובייל</div>
+                <div class="hero-chip gem-chip">💎 שפת קוד</div>
+              </div>
+
+              <img
+                class="hero-image"
+                src="./game-cover.png"
+                alt="תמונת המשחק שפת קוד"
+              />
+
+              <div class="hero-copy">
+                <p class="eyebrow">גרסת משחק הזיכרון 🎮</p>
+                <h1>שפת קוד</h1>
+                <p class="subtitle">
+                  בואו לעבוד על התקשורת שלכם. השפה הייחודית היא הלב של המשחק.
+                  חושבים שתצליחו לזהות את כל המילים? ✨
+                </p>
+              </div>
             </div>
 
-            <img
-              class="hero-image"
-              src="./game-cover.png"
-              alt="תמונת המשחק שפת קוד"
-            />
+            <div class="panel mode-panel pop-in">
+              <div class="panel-title-row">
+                <h2>בחרו רמת משחק</h2>
+                <span class="panel-pill">🎧 משימת התאמה</span>
+              </div>
 
-            <div class="hero-copy">
-              <p class="eyebrow">גרסת משחק הזיכרון 🎮</p>
-              <h1>שפת קוד</h1>
-              <p class="subtitle">
-                בואו לעבוד על התקשורת שלכם. השפה הייחודית היא הלב של המשחק.
-                חושבים שתצליחו לזהות את כל המילים? ✨
-              </p>
-            </div>
-          </div>
+              <div class="tip-banner">
+                <span class="tip-emoji">👶</span>
+                <p>טיפ: תכנסו לראש של ילד בן 3</p>
+              </div>
 
-          <div class="panel mode-panel pop-in">
-            <div class="panel-title-row">
-              <h2>בחרו רמת משחק</h2>
-              <span class="panel-pill">🎧 משימת התאמה</span>
-            </div>
+              <div class="difficulty-grid">
+                <button class="difficulty-btn" data-difficulty="easy">
+                  <span class="difficulty-emoji">🌟</span>
+                  <strong>קל</strong>
+                  <small>4 זוגות</small>
+                </button>
+                <button class="difficulty-btn" data-difficulty="medium">
+                  <span class="difficulty-emoji">🔥</span>
+                  <strong>בינוני</strong>
+                  <small>6 זוגות</small>
+                </button>
+                <button class="difficulty-btn" data-difficulty="hard">
+                  <span class="difficulty-emoji">👑</span>
+                  <strong>קשה</strong>
+                  <small>8 זוגות</small>
+                </button>
+              </div>
 
-            <div class="tip-banner">
-              <span class="tip-emoji">👶</span>
-              <p>טיפ: תכנסו לראש של ילד בן 3</p>
-            </div>
-
-            <div class="difficulty-grid">
-              <button class="difficulty-btn" data-difficulty="easy">
-                <span class="difficulty-emoji">🌟</span>
-                <strong>קל</strong>
-                <small>4 זוגות</small>
+              <button id="startGameBtn" class="primary-btn">
+                התחל משחק חדש 🚀
               </button>
-              <button class="difficulty-btn" data-difficulty="medium">
-                <span class="difficulty-emoji">🔥</span>
-                <strong>בינוני</strong>
-                <small>6 זוגות</small>
-              </button>
-              <button class="difficulty-btn" data-difficulty="hard">
-                <span class="difficulty-emoji">👑</span>
-                <strong>קשה</strong>
-                <small>8 זוגות</small>
-              </button>
             </div>
-
-            <button id="startGameBtn" class="primary-btn">
-              התחל משחק חדש 🚀
-            </button>
           </div>
         </section>
 
         <section class="screen game-screen" id="gameScreen" aria-hidden="true">
-          <header class="hud">
-            <div class="hud-chip score-chip">
-              <span class="hud-icon">🏆</span>
-              <div>
-                <small>נקודות</small>
-                <strong id="scoreValue">0</strong>
+          <div class="screen-inner game-inner">
+            <header class="hud">
+              <div class="hud-chip score-chip">
+                <span class="hud-icon">🏆</span>
+                <div>
+                  <small>נקודות</small>
+                  <strong id="scoreValue">0</strong>
+                </div>
               </div>
-            </div>
-            <div class="hud-chip timer-chip">
-              <span class="hud-icon">⏱️</span>
-              <div>
-                <small>זמן</small>
-                <strong id="timeValue">00:00</strong>
+              <div class="hud-chip timer-chip">
+                <span class="hud-icon">⏱️</span>
+                <div>
+                  <small>זמן</small>
+                  <strong id="timeValue">00:00</strong>
+                </div>
               </div>
-            </div>
-            <div class="hud-chip level-chip">
-              <span class="hud-icon">🕶️</span>
-              <div>
-                <small>רמה</small>
-                <strong id="levelValue">קל</strong>
+              <div class="hud-chip level-chip">
+                <span class="hud-icon">🕶️</span>
+                <div>
+                  <small>רמה</small>
+                  <strong id="levelValue">קל</strong>
+                </div>
               </div>
-            </div>
-          </header>
+            </header>
 
-          <section class="status-strip">
-            <div class="status-text">
-              <span id="statusEmoji">🎧</span>
-              <p id="statusMessage">מצאו שני קלפים שהם זוג תואם.</p>
-            </div>
-            <button id="backToMenuBtn" class="ghost-btn">חזרה לתפריט</button>
-          </section>
+            <section class="status-strip">
+              <div class="status-text">
+                <span id="statusEmoji">🎧</span>
+                <p id="statusMessage">מצאו שני קלפים שהם זוג תואם.</p>
+              </div>
+              <button id="backToMenuBtn" class="ghost-btn">חזרה לתפריט</button>
+            </section>
 
-          <section class="board-panel">
-            <div id="gameBoard" class="game-board" aria-live="polite"></div>
-          </section>
+            <section class="board-panel">
+              <div id="gameBoard" class="game-board" aria-live="polite"></div>
+            </section>
+          </div>
         </section>
 
         <section class="screen victory-screen" id="victoryScreen" aria-hidden="true">
           <canvas id="confettiCanvas"></canvas>
-          <div class="victory-card pop-in">
-            <div class="victory-badge">✨ ניצחון ✨</div>
-            <h2>כל הכבוד! 🎉</h2>
-            <p>פתרתם את כל הזוגות בשפת קוד.</p>
-            <div class="victory-stats">
-              <div class="victory-stat">
-                <span>⏱️</span>
-                <strong id="finalTime">00:00</strong>
-                <small>זמן סיום</small>
+          <div class="screen-inner victory-inner">
+            <div class="victory-card pop-in">
+              <div class="victory-badge">✨ ניצחון ✨</div>
+              <h2>כל הכבוד! 🎉</h2>
+              <p>פתרתם את כל הזוגות בשפת קוד.</p>
+              <div class="victory-stats">
+                <div class="victory-stat">
+                  <span>⏱️</span>
+                  <strong id="finalTime">00:00</strong>
+                  <small>זמן סיום</small>
+                </div>
+                <div class="victory-stat">
+                  <span>🏆</span>
+                  <strong id="finalScore">0</strong>
+                  <small>נקודות</small>
+                </div>
               </div>
-              <div class="victory-stat">
-                <span>🏆</span>
-                <strong id="finalScore">0</strong>
-                <small>נקודות</small>
-              </div>
-            </div>
 
-            <div class="victory-actions">
-              <button id="playAgainBtn" class="primary-btn">שחקו שוב 🔁</button>
-              <button id="chooseDifficultyBtn" class="secondary-btn">
-                בחרו רמה אחרת 🎮
-              </button>
+              <div class="victory-actions">
+                <button id="playAgainBtn" class="primary-btn">שחקו שוב 🔁</button>
+                <button id="chooseDifficultyBtn" class="secondary-btn">
+                  בחרו רמה אחרת 🎮
+                </button>
+              </div>
             </div>
           </div>
         </section>
