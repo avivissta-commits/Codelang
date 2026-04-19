@@ -436,8 +436,8 @@ body.mobile-device .game-board {
   display: block;
   border-radius: 24px;
   object-fit: cover;
-  height: min(34vh, 300px);
-  min-height: 148px;
+  height: min(34vh, 325px);
+  min-height: 173px;
   border: 2px solid rgba(255, 255, 255, 0.14);
   box-shadow:
     0 16px 30px rgba(0, 0, 0, 0.35),
@@ -1092,8 +1092,8 @@ h2 {
   }
 
   .hero-image {
-    height: 136px;
-    min-height: 136px;
+    height: 161px;
+    min-height: 161px;
   }
 
   .difficulty-grid {
