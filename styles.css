@@ -22,7 +22,9 @@
 html,
 body {
   margin: 0;
+  height: 100%;
   min-height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -40,7 +42,8 @@ button {
 }
 
 .app-shell {
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
   display: grid;
   place-items: center;
   padding: 18px;
@@ -72,7 +75,8 @@ button {
 
 .phone-frame {
   width: min(100%, 460px);
-  min-height: min(940px, calc(100vh - 36px));
+  height: min(940px, calc(100dvh - 36px));
+  min-height: 0;
   position: relative;
   background:
     linear-gradient(180deg, rgba(109, 185, 255, 0.08), transparent 16%),
@@ -101,7 +105,7 @@ button {
   position: absolute;
   inset: 0;
   padding: 20px 18px 24px;
-  overflow: auto;
+  overflow: hidden;
   opacity: 0;
   transform: translateY(20px) scale(0.98);
   pointer-events: none;
@@ -114,6 +118,23 @@ button {
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
+}
+
+.intro-screen,
+.game-screen,
+.victory-screen {
+  display: grid;
+  height: 100%;
+}
+
+.intro-screen {
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+}
+
+.game-screen {
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 10px;
 }
 
 .hero-card,
@@ -131,6 +152,7 @@ button {
   padding: 14px;
   position: relative;
   overflow: hidden;
+  min-height: 0;
 }
 
 .hero-card::after {
@@ -178,7 +200,8 @@ button {
   display: block;
   border-radius: 24px;
   object-fit: cover;
-  max-height: 340px;
+  height: min(34vh, 300px);
+  min-height: 148px;
   border: 2px solid rgba(255, 255, 255, 0.14);
   box-shadow:
     0 16px 30px rgba(0, 0, 0, 0.35),
@@ -187,7 +210,7 @@ button {
 
 .hero-copy {
   position: relative;
-  padding: 16px 10px 6px;
+  padding: 12px 10px 4px;
   z-index: 1;
 }
 
@@ -215,14 +238,14 @@ h2 {
 }
 
 .subtitle {
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   color: var(--text-soft);
-  line-height: 1.6;
+  line-height: 1.45;
 }
 
 .mode-panel {
-  margin-top: 16px;
-  padding: 18px;
+  margin-top: 0;
+  padding: 14px;
 }
 
 .panel-title-row {
@@ -230,7 +253,7 @@ h2 {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .panel-pill {
@@ -243,8 +266,8 @@ h2 {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
-  padding: 12px 14px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
   border-radius: 20px;
   background:
     linear-gradient(180deg, rgba(255, 223, 143, 0.2), rgba(255, 175, 63, 0.14)),
@@ -279,8 +302,8 @@ h2 {
 .difficulty-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin-bottom: 18px;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .difficulty-btn,
@@ -294,9 +317,9 @@ h2 {
 }
 
 .difficulty-btn {
-  min-height: 110px;
+  min-height: 88px;
   border-radius: 24px;
-  padding: 14px 10px;
+  padding: 10px 8px;
   color: white;
   background:
     linear-gradient(180deg, rgba(121, 191, 255, 0.95), rgba(45, 95, 168, 0.9)),
@@ -332,9 +355,9 @@ h2 {
 .primary-btn,
 .secondary-btn,
 .ghost-btn {
-  min-height: 56px;
+  min-height: 48px;
   border-radius: 22px;
-  padding: 14px 18px;
+  padding: 10px 14px;
   font-weight: 700;
 }
 
@@ -366,67 +389,75 @@ h2 {
 .hud {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .hud-chip {
-  min-height: 76px;
+  min-height: 58px;
+  padding: 8px 10px;
   background: linear-gradient(180deg, rgba(111, 176, 255, 0.28), rgba(12, 30, 67, 0.9));
 }
 
 .hud-chip strong {
   display: block;
-  font-size: 1.15rem;
+  font-size: 0.98rem;
 }
 
 .hud-chip small {
   color: var(--text-soft);
+  font-size: 0.74rem;
 }
 
 .hud-icon {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
 }
 
 .status-strip {
-  margin: 14px 0;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
 }
 
 .status-text {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: 8px;
+  padding: 9px 11px;
   flex: 1;
   border-radius: 22px;
   background: rgba(17, 42, 81, 0.72);
   border: 1px solid rgba(160, 205, 255, 0.16);
+  min-width: 0;
 }
 
 .status-text p {
   margin: 0;
   color: var(--text-soft);
+  font-size: 0.86rem;
 }
 
 .board-panel {
-  padding: 16px;
+  padding: 10px;
+  height: 100%;
+  min-height: 0;
 }
 
 .game-board {
   display: grid;
+  height: 100%;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  align-content: center;
+  gap: 8px;
   justify-items: center;
 }
 
 .memory-card {
   position: relative;
-  width: min(100%, 126px);
+  width: min(100%, 116px);
   aspect-ratio: 0.7 / 1;
-  min-height: 164px;
+  min-height: 0;
   perspective: 1200px;
   background: transparent;
 }
@@ -668,7 +699,7 @@ h2 {
 .victory-screen {
   display: grid;
   place-items: center;
-  padding: 24px 20px;
+  padding: 18px 16px;
 }
 
 #confettiCanvas {
@@ -683,7 +714,7 @@ h2 {
   position: relative;
   z-index: 1;
   width: 100%;
-  padding: 24px 20px;
+  padding: 18px 16px;
   text-align: center;
 }
 
@@ -704,12 +735,12 @@ h2 {
 .victory-stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin: 22px 0;
+  gap: 8px;
+  margin: 14px 0;
 }
 
 .victory-stat {
-  padding: 16px;
+  padding: 12px;
   border-radius: 22px;
   background: rgba(22, 52, 96, 0.74);
   border: 1px solid rgba(173, 223, 255, 0.18);
@@ -721,13 +752,13 @@ h2 {
 
 .victory-stat strong {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-top: 8px;
 }
 
 .victory-actions {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 .floating {
@@ -777,18 +808,27 @@ h2 {
 }
 
 @media (max-width: 520px) {
+  .app-shell {
+    padding: 0;
+  }
+
   .phone-frame {
     width: 100%;
-    min-height: calc(100vh - 20px);
-    border-radius: 28px;
+    height: 100dvh;
+    border-radius: 0;
   }
 
   .screen {
-    padding: 16px 14px 20px;
+    padding:
+      max(16px, env(safe-area-inset-top))
+      14px
+      max(20px, env(safe-area-inset-bottom))
+      14px;
   }
 
   .hero-image {
-    max-height: 290px;
+    height: min(28vh, 220px);
+    min-height: 132px;
   }
 
   .difficulty-grid {
@@ -800,29 +840,179 @@ h2 {
   }
 
   .hud-chip {
-    min-height: 70px;
-    padding: 10px 12px;
+    min-height: 54px;
+    padding: 8px 10px;
   }
 
   .status-strip {
     flex-direction: column;
     align-items: stretch;
   }
+
+  .memory-card {
+    width: min(100%, 104px);
+  }
 }
 
 @media (max-width: 390px) {
-  .difficulty-grid,
-  .hud,
-  .victory-stats {
-    grid-template-columns: 1fr;
+  .memory-card {
+    width: min(100%, 92px);
+  }
+}
+
+@media (max-height: 820px) {
+  .screen {
+    padding: 14px 12px 16px;
+  }
+
+  .intro-screen {
+    gap: 8px;
+  }
+
+  .hero-badges {
+    margin-bottom: 8px;
+  }
+
+  .hero-chip,
+  .panel-pill {
+    padding: 7px 10px;
+    font-size: 0.82rem;
+  }
+
+  .hero-image {
+    height: min(24vh, 180px);
+    min-height: 108px;
+  }
+
+  h1 {
+    font-size: clamp(1.55rem, 5vw, 2.1rem);
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  .subtitle {
+    font-size: 0.86rem;
+    line-height: 1.35;
+  }
+
+  .mode-panel {
+    padding: 12px;
+  }
+
+  .tip-banner {
+    margin-bottom: 10px;
+    padding: 8px 10px;
+  }
+
+  .tip-banner p {
+    font-size: 0.84rem;
+  }
+
+  .tip-emoji {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    font-size: 0.95rem;
+  }
+
+  .difficulty-btn {
+    min-height: 68px;
+    padding: 8px 6px;
+    border-radius: 16px;
+    font-size: 0.86rem;
+  }
+
+  .difficulty-btn small {
+    font-size: 0.68rem;
+  }
+
+  .difficulty-emoji {
+    font-size: 1.1rem;
+  }
+
+  .primary-btn,
+  .secondary-btn,
+  .ghost-btn {
+    min-height: 42px;
+    padding: 9px 12px;
+    border-radius: 16px;
+    font-size: 0.92rem;
+  }
+
+  .hud-chip {
+    min-height: 50px;
+    padding: 7px 8px;
+  }
+
+  .hud-chip strong {
+    font-size: 0.9rem;
+  }
+
+  .hud-chip small {
+    font-size: 0.66rem;
+  }
+
+  .hud-icon {
+    font-size: 1rem;
+  }
+
+  .status-text p {
+    font-size: 0.78rem;
+  }
+
+  .board-panel {
+    padding: 8px;
   }
 
   .game-board {
-    gap: 10px;
+    gap: 6px;
   }
 
   .memory-card {
-    width: min(100%, 118px);
-    min-height: 148px;
+    width: min(100%, 88px);
+  }
+
+  .card-crown,
+  .card-bottom-gem {
+    font-size: 1.05rem;
+  }
+
+  .card-corner {
+    font-size: 0.7rem;
+  }
+
+  .corner-top-right,
+  .corner-top-left {
+    top: 10px;
+  }
+
+  .corner-bottom-right,
+  .corner-bottom-left {
+    bottom: 10px;
+  }
+
+  .corner-top-right,
+  .corner-bottom-right {
+    right: 10px;
+  }
+
+  .corner-top-left,
+  .corner-bottom-left {
+    left: 10px;
+  }
+
+  .card-front-orbit {
+    inset: 30px 20px;
+  }
+
+  .card-content {
+    gap: 6px;
+    padding: 22px 6px;
+  }
+
+  .card-spark {
+    font-size: 1rem;
   }
 }
