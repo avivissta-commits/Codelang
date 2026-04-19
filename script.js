@@ -65,21 +65,29 @@ ui.minimizeViewBtn.addEventListener("click", showIntro);
 ui.closeViewBtn.addEventListener("click", closeExperience);
 window.addEventListener("resize", () => {
   updateViewportMetrics();
-  if (state.isPlaying) {
-    fitCardWords();
-  }
   fitActiveScreen();
+  if (state.isPlaying) {
+    window.requestAnimationFrame(fitCardWords);
+  }
 });
 window.addEventListener("load", () => {
   updateViewportMetrics();
-  fitCardWords();
   fitActiveScreen();
+  fitCardWords();
 });
 window.visualViewport?.addEventListener("resize", () => {
   updateViewportMetrics();
   fitActiveScreen();
+  if (state.isPlaying) {
+    window.requestAnimationFrame(fitCardWords);
+  }
 });
-window.visualViewport?.addEventListener("scroll", updateViewportMetrics);
+window.visualViewport?.addEventListener("scroll", () => {
+  updateViewportMetrics();
+  if (state.isPlaying) {
+    window.requestAnimationFrame(fitCardWords);
+  }
+});
 
 updateViewportMetrics();
 selectDifficulty("easy");
@@ -122,8 +130,8 @@ function startGame(difficulty) {
   showScreen("game");
   startTimer();
   window.requestAnimationFrame(() => {
-    fitCardWords();
     fitActiveScreen();
+    fitCardWords();
   });
 }
 
@@ -221,12 +229,14 @@ function fitCardWords() {
     }
 
     element.style.fontSize = "";
+    element.style.justifyContent = "center";
+    element.style.textAlign = "center";
 
     const computedStyle = window.getComputedStyle(element);
     let fontSize = parseFloat(computedStyle.fontSize);
     const minFontSize = element.classList.contains("card-word--stacked") ? 13 : 10;
-    const maxWidth = content.clientWidth - 6;
-    const maxHeight = content.clientHeight - 36;
+    const maxWidth = content.clientWidth - 4;
+    const maxHeight = content.clientHeight - 30;
 
     while ((element.scrollWidth > maxWidth || element.scrollHeight > maxHeight) && fontSize > minFontSize) {
       fontSize -= 0.5;
@@ -464,7 +474,12 @@ function showScreen(screenName) {
     screen.setAttribute("aria-hidden", String(!isActive));
   });
 
-  fitActiveScreen();
+  window.requestAnimationFrame(() => {
+    fitActiveScreen();
+    if (screenName === "game") {
+      fitCardWords();
+    }
+  });
 }
 
 function setBoardColumns() {
