@@ -207,7 +207,7 @@ button {
 
 body.mobile-viewport .screen-inner,
 body.mobile-device {
-  --screen-bottom-gap: calc(16px + env(safe-area-inset-bottom) + var(--browser-ui-bottom));
+  --screen-bottom-gap: calc(8px + env(safe-area-inset-bottom) + var(--browser-ui-bottom));
 }
 
 body.mobile-device .app-shell {
