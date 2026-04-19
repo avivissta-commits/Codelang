@@ -257,7 +257,7 @@ body.mobile-device .victory-screen {
 
 body.mobile-device .game-screen {
   overflow: hidden;
-  inset: var(--frame-topbar-height) 0 calc(var(--screen-bottom-gap) + 24px) 0;
+  inset: var(--frame-topbar-height) 0 calc(var(--screen-bottom-gap) + 36px) 0;
 }
 
 body.mobile-device .intro-inner,
@@ -272,22 +272,26 @@ body.mobile-device .game-inner {
   height: 100%;
   grid-template-rows: auto auto minmax(0, 1fr);
   min-height: 0;
-  padding-bottom: calc(24px + env(safe-area-inset-bottom) + var(--browser-ui-bottom));
+  padding-bottom: calc(32px + env(safe-area-inset-bottom) + var(--browser-ui-bottom));
 }
 
 body.mobile-device .board-panel {
   min-height: 0;
   overflow: hidden;
   padding: 4px;
-  margin: 0 8px 12px;
-  max-height: calc(100% - 20px);
+  margin: 0 12px 20px;
+  max-height: calc(100% - 40px);
   align-self: start;
 }
 
 body.mobile-device .game-board {
   height: 100%;
   align-content: stretch;
-  gap: 4px;
+  gap: 3px;
+}
+
+body.mobile-device .memory-card {
+  width: min(100%, 86px);
 }
 
 body.mobile-device .hud {
@@ -1473,37 +1477,33 @@ body.mobile-device .screen-inner.compact-screen .status-text p {
 }
 
 body.mobile-device .screen-inner.compact-screen .memory-card {
-  width: min(100%, 82px);
+  width: min(100%, 74px);
 }
 
 body.mobile-device .screen-inner.compact-screen .game-inner {
-  padding-bottom: calc(24px + env(safe-area-inset-bottom) + var(--browser-ui-bottom));
+  padding-bottom: calc(32px + env(safe-area-inset-bottom) + var(--browser-ui-bottom));
 }
 
 body.mobile-device .screen-inner.compact-screen .board-panel {
   padding: 4px;
-  margin: 0 10px 16px;
-  max-height: calc(100% - 24px);
+  margin: 0 14px 24px;
+  max-height: calc(100% - 48px);
 }
 
 body.mobile-device .screen-inner.compact-screen .game-board {
-  gap: 4px;
-}
-
-body.mobile-device .screen-inner.compact-screen .memory-card {
-  width: min(100%, 78px);
+  gap: 3px;
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .game-inner {
-  padding-bottom: calc(24px + env(safe-area-inset-bottom) + var(--browser-ui-bottom));
+  padding-bottom: calc(32px + env(safe-area-inset-bottom) + var(--browser-ui-bottom));
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .memory-card {
-  width: min(100%, 68px);
+  width: min(100%, 60px);
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .game-board {
-  gap: 4px;
+  gap: 2px;
 }
 
 body.mobile-device .screen-inner.ultra-compact-screen .hud {
